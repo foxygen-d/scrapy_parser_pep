@@ -1,9 +1,9 @@
-import csv
 from datetime import datetime
-from itemadapter import ItemAdapter
+from pathlib import Path
 
+BASE_DIR = Path(__file__).parent.parent
 
-class PepParseToCSVPipeline:
+class PepParsePipeline:
 
     def open_spider(self, spider):
         self.csvfile = open(f'results/status_summary_{datetime.now()}.csv', mode='w', encoding='utf-8')

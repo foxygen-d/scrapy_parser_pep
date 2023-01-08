@@ -8,6 +8,7 @@
 * запуск виртуального окружения `source venv/bin/activate`
 * запуск команды на старт проекта `scrapy startproject pep_parse .`
 * создание паука `scrapy genspider pep peps.python.org`
+* запуск паука `scrapy crawl pep`
 * запуск тестов `pytest`
 
 
