@@ -6,10 +6,6 @@ from pep_parse.settings import BASE_DIR
 class PepParsePipeline:
 
     def open_spider(self, spider):
-        path = BASE_DIR / 'results'
-        now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-        self.csvfile = open(f'{path}/status_summary_{now}.csv', mode='w', encoding='utf-8')
-        self.csvfile.write('Статус,Количество\n')
         self.status_count = {}
 
     def process_item(self, item, spider):
@@ -18,6 +14,11 @@ class PepParsePipeline:
         return item
 
     def close_spider(self, spider):
+        time = datetime.strftime(datetime.now(), '%Y-%m-%dT%H-%M-%S')
+        path = BASE_DIR / f'results/status_summary_{time}.csv'
+        self.csvfile = open(path, mode='w', encoding='utf-8')
+        self.csvfile.write('Статус,Количество\n')
+
         for status, count in self.status_count.items():
             self.csvfile.write(f'{status},{count}\n')
 
