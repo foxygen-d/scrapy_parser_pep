@@ -1,5 +1,6 @@
-from datetime import datetime
 import csv
+from datetime import datetime
+
 from pep_parse.settings import BASE_DIR
 
 
