@@ -1,5 +1,5 @@
 from datetime import datetime
-
+import csv
 from pep_parse.settings import BASE_DIR
 
 
@@ -16,12 +16,11 @@ class PepParsePipeline:
     def close_spider(self, spider):
         time = datetime.now().strftime('%Y-%m-%dT%H-%M-%S')
         path = BASE_DIR / f'results/status_summary_{time}.csv'
-        self.csvfile = open(path, mode='w', encoding='utf-8')
-        self.csvfile.write('Статус,Количество\n')
 
-        for status, count in self.status_count.items():
-            self.csvfile.write(f'{status},{count}\n')
+        with open(path, mode='w', encoding='utf-8') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(['Статус', 'Количество'])
+            writer.writerows(self.status_count.items())
 
-        total = sum(self.status_count.values())
-        self.csvfile.write(f'Total,{total}\n')
-        self.csvfile.close()
+            total = sum(self.status_count.values())
+            writer.writerow(['Total', total])
