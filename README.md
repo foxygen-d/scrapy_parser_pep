@@ -14,7 +14,8 @@
 
 * клонировать проект на компьютер `git clone https://github.com/foxygen-d/scrapy_parser_pep.git`
 * создание виртуального окружения `python3 -m venv venv`
-* запуск виртуального окружения `source venv/bin/activate`
+* запуск виртуального окружения `. venv/bin/activate`
+* установить зависимости из файла requirements.txt `pip install -r requirements.txt`
 * запуск команды на старт проекта `scrapy startproject pep_parse .`
 * создание паука `scrapy genspider pep peps.python.org`
 * запуск паука `scrapy crawl pep`
